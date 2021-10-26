@@ -1,8 +1,52 @@
 {% load static %}
 <html>
-	<head></head>
+	<head>
+		<script type="text/javascript">
+			function getElapsedTimeAsString(startTimeString) {
+			  const startTime = Date.parse(startTimeString);
+			  const elapsedMilliseconds = Date.now() - startTime;
+			  const fullyElapsedHours = Math.floor(elapsedMilliseconds / (1000*60*60));
+			  const fullyElapsedMinutes = Math.floor(elapsedMilliseconds / (1000*60));
+			  const elapsedMinutes = fullyElapsedMinutes - fullyElapsedHours * 60;
+			  const fullyElapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+			  const elapsedSeconds = fullyElapsedSeconds - fullyElapsedMinutes * 60;
+			
+			  return "" + fullyElapsedHours + ":" + elapsedMinutes + ":" + elapsedSeconds;
+			}
+			function keepElapsedTimeUpdated(elementId, startTimeString) {
+			  window.setInterval(function() {
+			    element = document.getElementById(elementId);
+			    element.innerHTML = getElapsedTimeAsString(startTimeString);
+			  }, 1000);
+			}
+		</script>
+	</head>
 	<body>
-		Hello world!
-		<img src={% static 'display/img.png' %} width="500">
+		{% if records %}
+		<div>
+			{% for record in records %}
+			<div>
+				<div>
+					{{ record.activity.name }}
+				</div>
+				<div>
+					{{ record.project.name }}
+				</div>
+				<div>
+					{{ record.description }}
+				</div>
+				<div id="record_{{ record.id }}_elapsedTime">
+					-
+				</div>
+				<script type="text/javascript">
+					elementId = "record_{{ record.id }}_elapsedTime";
+					keepElapsedTimeUpdated(elementId, "{{ record.begin }}");
+				</script>
+			</div>
+			{% endfor %}
+		</div>
+		{% else %}
+		<p> Error: could not retrieve records</p>
+		{% endif %}
 	</body>
 </html>
