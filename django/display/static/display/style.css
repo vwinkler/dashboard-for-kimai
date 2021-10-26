@@ -1,0 +1,38 @@
+.title {
+    font-size: x-large;
+}
+
+.record-container {
+    margin: 20px;
+}
+
+.record-row {
+    width: 100%;
+    min-height: 30px;
+    margin-top: 1px;
+    margin-bottom: 20px;
+}
+.record-row.odd {
+    background-color: #c0c0c0;
+}
+
+.record-row.even {
+    background-color: #ffffff;
+}
+
+.record-row-top {
+    font-size: large;
+    font-weight: bold;
+}
+
+.record-row-bottom {
+    font-style: italic;
+}
+
+.record-cell {
+    display: table-cell;
+    width: 400px;
+}
+
+.record-cell *{
+}

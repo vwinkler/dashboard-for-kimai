@@ -1,6 +1,7 @@
 {% load static %}
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'display/style.css' %}">
 		<script type="text/javascript">
 			function getElapsedTimeAsString(startTimeString) {
 			  const startTime = Date.parse(startTimeString);
@@ -22,21 +23,24 @@
 		</script>
 	</head>
 	<body>
+		<p class="title">Current tasks</p>
 		{% if records %}
-		<div>
+		<div class="record-container">
 			{% for record in records %}
-			<div>
-				<div>
-					{{ record.activity.name }}
+			<div class="record-row">
+				<div class="record-row-top">
+					<div class="record-cell">
+						{{ record.activity.name }}
+					</div>
+					<div class="record-cell">
+						{{ record.project.name }}
+					</div>
+					<div class="record-cell" id="record_{{ record.id }}_elapsedTime">
+						-
+					</div>
 				</div>
-				<div>
-					{{ record.project.name }}
-				</div>
-				<div>
+				<div class="record-row-bottom">
 					{{ record.description }}
-				</div>
-				<div id="record_{{ record.id }}_elapsedTime">
-					-
 				</div>
 				<script type="text/javascript">
 					elementId = "record_{{ record.id }}_elapsedTime";
