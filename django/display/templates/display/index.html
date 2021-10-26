@@ -1,5 +1,6 @@
 {% load static %}
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="{% static 'display/style.css' %}">
 		<script type="text/javascript">
@@ -21,10 +22,10 @@
 			  }, 1000);
 			}
 		</script>
+		<title>Task dashboard</title>
 	</head>
 	<body>
 		<p class="title">Current tasks</p>
-		{% if records %}
 		<div class="record-container">
 			{% for record in records %}
 			<div class="record-row">
@@ -49,8 +50,6 @@
 			</div>
 			{% endfor %}
 		</div>
-		{% else %}
-		<p> Error: could not retrieve records</p>
-		{% endif %}
+		<p class="counter">Currently {{ records|length }} tasks</p>
 	</body>
 </html>

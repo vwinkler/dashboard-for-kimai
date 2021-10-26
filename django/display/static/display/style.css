@@ -36,3 +36,7 @@
 
 .record-cell *{
 }
+
+.counter {
+    font-weight: bold;
+}
