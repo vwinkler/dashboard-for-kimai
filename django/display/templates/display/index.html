@@ -16,12 +16,15 @@
 			  return "" + fullyElapsedHours + ":" + elapsedMinutes + ":" + elapsedSeconds;
 			}
 			function keepElapsedTimeUpdated(elementId, startTimeString) {
-			  window.setInterval(function() {
+			  update = function() {
 			    element = document.getElementById(elementId);
 			    element.innerHTML = getElapsedTimeAsString(startTimeString);
-			  }, 1000);
+			  };
+			  update();
+			  window.setInterval(update, 1000);
 			}
 		</script>
+		<meta http-equiv="refresh" content="1">
 		<title>Task dashboard</title>
 	</head>
 	<body>
@@ -30,14 +33,16 @@
 			{% for record in records %}
 			<div class="record-row">
 				<div class="record-row-top">
-					<div class="record-cell">
+					<div class="record-cell activity-cell">
 						{{ record.activity.name }}
+						({{ record.project.name }})
 					</div>
-					<div class="record-cell">
-						{{ record.project.name }}
-					</div>
-					<div class="record-cell" id="record_{{ record.id }}_elapsedTime">
-						-
+					<div class="record-cell time-cell"
+					     id="record_{{ record.id }}_elapsedTime">	
+						<script type="text/javascript">
+							initialHtml = getElapsedTimeAsString("{{ recod.begin }}");
+							document.write(initialHtml);
+						</script>
 					</div>
 				</div>
 				<div class="record-row-bottom">

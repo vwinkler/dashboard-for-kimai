@@ -1,5 +1,9 @@
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
 .title {
-    font-size: x-large;
+    font-size: 64pt;
 }
 
 .record-container {
@@ -21,22 +25,33 @@
 }
 
 .record-row-top {
-    font-size: large;
+    font-size: 54pt;
     font-weight: bold;
 }
 
 .record-row-bottom {
     font-style: italic;
+    font-size: 40pt;
 }
 
 .record-cell {
     display: table-cell;
-    width: 400px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .record-cell *{
 }
 
+.activity-cell {
+    width: 1500px;
+}
+
+.time-cell {
+    width: 300px;
+}
+
 .counter {
     font-weight: bold;
+    font-size: 40pt
 }
