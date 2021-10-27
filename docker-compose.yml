@@ -12,6 +12,7 @@ services:
       - .env.prod
     networks:
       - kimai2_default
+    restart: always
   nginx:
     build: nginx/
     ports:
@@ -22,6 +23,7 @@ services:
       - static_volume:/home/app/staticfiles
     networks:
       - kimai2_default
+    restart: always
 
 volumes:
   static_volume:
