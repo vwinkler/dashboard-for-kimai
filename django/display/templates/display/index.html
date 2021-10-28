@@ -4,16 +4,25 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="{% static 'display/style.css' %}">
 		<script type="text/javascript">
+			function toTwoDigitFormat(num) {
+			  s = "00" + num;
+			  return s.substr(s.length-2)
+			}
+			function formatTimeDifference(timeDifferenceMilliseconds) {			  
+			  const fullyElapsedHours = Math.floor(timeDifferenceMilliseconds / (1000*60*60));
+			  const fullyElapsedMinutes = Math.floor(timeDifferenceMilliseconds / (1000*60));
+			  const elapsedMinutes = fullyElapsedMinutes - fullyElapsedHours * 60;
+			  const fullyElapsedSeconds = Math.floor(timeDifferenceMilliseconds / 1000);
+			  const elapsedSeconds = fullyElapsedSeconds - fullyElapsedMinutes * 60;
+			  return "" + toTwoDigitFormat(fullyElapsedHours)
+			      + ":" + toTwoDigitFormat(elapsedMinutes)
+			      + ":" + toTwoDigitFormat(elapsedSeconds);
+			}
 			function getElapsedTimeAsString(startTimeString) {
 			  const startTime = Date.parse(startTimeString);
 			  const elapsedMilliseconds = Date.now() - startTime;
-			  const fullyElapsedHours = Math.floor(elapsedMilliseconds / (1000*60*60));
-			  const fullyElapsedMinutes = Math.floor(elapsedMilliseconds / (1000*60));
-			  const elapsedMinutes = fullyElapsedMinutes - fullyElapsedHours * 60;
-			  const fullyElapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
-			  const elapsedSeconds = fullyElapsedSeconds - fullyElapsedMinutes * 60;
 			
-			  return "" + fullyElapsedHours + ":" + elapsedMinutes + ":" + elapsedSeconds;
+			  return formatTimeDifference(elapsedMilliseconds);
 			}
 			function keepElapsedTimeUpdated(elementId, startTimeString) {
 			  update = function() {
