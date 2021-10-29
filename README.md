@@ -1,10 +1,10 @@
 # What it does
-This is a dashboard for [Kimai](www.kimai.org).
+This is a dashboard for [Kimai](https://www.kimai.org).
 It shows all active timeschedule records (i.e. the tasks that have startet but not yet been ended) of a user.
 ![Preview](preview.png "Preview: You have been preparing a meeting for the last hour and 39 minutes.")
 
 # How to use it
-A running docker instance of Kimai is required (see [here](www.kimai.org/documentation/docker.html)
+A running docker instance of Kimai is required (see [here](https://www.kimai.org/documentation/docker.html)
 for a `docker-compose.yml`).
 Add a `.env.prod` file with the following content:
 
