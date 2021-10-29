@@ -23,5 +23,5 @@ Replace `???` with a secret string
 Replace `test user` and `testapitoken`
 (you can set an API password kimai profile settings).
 Adjust the other settings according to your setup.
-You may have to change `kimai2_default` to the actual name of kimai's docker network
+You may have to change all occurrences of `kimai2_default` in `doker-compose.yml` to the actual name of kimai's docker network
 (run `docker network ls` while running kimai to find out the name).
